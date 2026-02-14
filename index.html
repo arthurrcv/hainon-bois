@@ -6,6 +6,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="ETF Hainon Bois — Élagage & abattage d’arbres à Vichy et alentours. Intervention sécurisée, travail soigné, devis gratuit." />
   <title>ETF Hainon Bois | Élagage & Abattage à Vichy</title>
+
+  <!-- SEO -->
+  <!-- IMPORTANT : remplace cette URL par ton URL Vercel finale -->
+  <link rel="canonical" href="https://hainon-bois.vercel.app/" />
+  <meta name="robots" content="index,follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="ETF Hainon Bois | Élagage & Abattage à Vichy" />
+  <meta property="og:description" content="ETF Hainon Bois — Élagage & abattage d’arbres à Vichy et alentours. Intervention sécurisée, travail soigné, devis gratuit." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://hainon-bois.vercel.app/" />
+  <!-- Optionnel : ajoute une image à la racine du site (ex: /og-image.jpg) -->
+  <meta property="og:image" content="https://hainon-bois.vercel.app/og-image.jpg" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ETF Hainon Bois | Élagage & Abattage à Vichy" />
+  <meta name="twitter:description" content="ETF Hainon Bois — Élagage & abattage d’arbres à Vichy et alentours. Devis gratuit." />
+  <meta name="twitter:image" content="https://hainon-bois.vercel.app/og-image.jpg" />
+
+  <!-- Données structurées (LocalBusiness) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "ETF Hainon Bois",
+    "areaServed": "Vichy et alentours",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Vichy",
+      "postalCode": "03200",
+      "addressCountry": "FR"
+    },
+    "telephone": "+33600000000",
+    "url": "https://hainon-bois.vercel.app/",
+    "description": "Élagage, abattage, taille de haies, débroussaillage et entretien extérieur à Vichy et alentours."
+  }
+  </script>
+
   <link rel="stylesheet" href="styles.css" />
 </head>
 
@@ -223,7 +262,6 @@
         </header>
 
         <div class="gallery">
-          <!-- Placeholders : remplacez les backgrounds par de vraies images plus tard -->
           <figure class="shot reveal" aria-label="Réalisation 1">
             <div class="shot__img" style="background-image:url('images/elagage1.jpg')"></div>
             <figcaption>Élagage • Mise en sécurité</figcaption>
@@ -293,12 +331,12 @@
                 </div>
               </div>
               <div class="mapCard__map">
-                <iframe 
+                <iframe
                   src="https://www.google.com/maps?q=Vichy%2003200&z=10&output=embed"
-                  width="100%" 
-                  height="100%" 
+                  width="100%"
+                  height="100%"
                   style="border:0; border-radius:14px;"
-                  allowfullscreen="" 
+                  allowfullscreen=""
                   loading="lazy">
                 </iframe>
               </div>
@@ -410,7 +448,12 @@
 
           <div class="formCard reveal">
             <h3>Demande de devis</h3>
-            <form id="contactForm" novalidate>
+
+            <!-- Formspree -->
+            <form id="contactForm" action="https://formspree.io/f/xykdwjee" method="POST" novalidate>
+              <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+              <input type="hidden" name="_subject" value="Demande de devis — ETF Hainon Bois" />
+
               <div class="fieldRow">
                 <div class="field">
                   <label for="name">Nom</label>
@@ -460,7 +503,6 @@
           Élagage • Abattage • Entretien extérieur — Vichy & alentours. Travail soigné, sécurité, devis gratuit.
         </p>
       </div>
-
 
       <div class="footer__meta">
         <p>© <span id="year"></span> ETF Hainon Bois</p>

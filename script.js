@@ -110,7 +110,7 @@ if (toTop) {
 }
 
 /* =========================
-   Validation formulaire + succès fictif
+   Validation formulaire + envoi Formspree
 ========================= */
 const form = $("#contactForm");
 const statusBox = $("#formStatus");
@@ -144,7 +144,7 @@ function hideStatus() {
 }
 
 if (form) {
-  form.addEventListener("submit", (e) => {
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
     hideStatus();
 
@@ -183,12 +183,32 @@ if (form) {
       return;
     }
 
-    // Succès fictif (pas d'envoi réel)
-    showStatus("✅ Merci ! Votre demande a bien été prise en compte. Nous vous recontactons rapidement.");
-    form.reset();
+    // Envoi réel via Formspree
+    const endpoint = form.getAttribute("action");
 
-    // Option : referme le menu si ouvert (mobile)
-    setMenu(false);
+    try {
+      showStatus("Envoi en cours…");
+
+      const formData = new FormData(form);
+
+      const res = await fetch(endpoint, {
+        method: "POST",
+        body: formData,
+        headers: { Accept: "application/json" },
+      });
+
+      if (res.ok) {
+        showStatus("✅ Merci ! Votre demande a bien été envoyée. Nous vous recontactons rapidement.");
+        form.reset();
+
+        // Option : referme le menu si ouvert (mobile)
+        setMenu(false);
+      } else {
+        showStatus("❌ Oups… l’envoi a échoué. Vous pouvez aussi nous appeler directement.");
+      }
+    } catch (err) {
+      showStatus("❌ Problème réseau. Réessayez ou appelez-nous directement.");
+    }
   });
 
   // Validation légère au blur (UX)
@@ -203,7 +223,13 @@ if (form) {
       if (id === "email" && v && !isValidEmail(v)) setError("email", "Email invalide.");
       if (id === "message" && v && v.length < 10) setError("message", "Message trop court.");
       if (!v) setError(id, "");
-      if (v && ((id === "name" && v.length >= 2) || (id === "phone" && isValidPhone(v)) || (id === "email" && isValidEmail(v)) || (id === "message" && v.length >= 10))) {
+      if (
+        v &&
+        ((id === "name" && v.length >= 2) ||
+          (id === "phone" && isValidPhone(v)) ||
+          (id === "email" && isValidEmail(v)) ||
+          (id === "message" && v.length >= 10))
+      ) {
         setError(id, "");
       }
     });
