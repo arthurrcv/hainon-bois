@@ -756,11 +756,13 @@ textarea{ resize: vertical; min-height: 120px; }
   padding: 34px 0;
 }
 .footer__inner{
-  display:grid;
-  grid-template-columns: 1.3fr .9fr .6fr;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
   gap: 16px;
-  align-items:start;
+  flex-wrap:wrap;
 }
+
 .footer__logo{
   font-weight: 900;
   letter-spacing:.2px;
